@@ -2,3 +2,4 @@ tqdm
 omegaconf
 gguf
 einops
+diffusers

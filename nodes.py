@@ -566,6 +566,9 @@ class KandinskyVAEDecode(io.ComfyNode):
             original_tile_min_frames = vae_model.tile_sample_min_num_frames
             original_tile_min_height = vae_model.tile_sample_min_height
             original_tile_min_width = vae_model.tile_sample_min_width
+            original_tile_stride_frames = vae_model.tile_sample_stride_num_frames
+            original_tile_stride_height = vae_model.tile_sample_stride_height
+            original_tile_stride_width = vae_model.tile_sample_stride_width
 
             vae_model.use_tiling = True
             vae_model.use_framewise_decoding = True
@@ -574,9 +577,9 @@ class KandinskyVAEDecode(io.ComfyNode):
             vae_model.tile_sample_min_height = tile_min_height
             vae_model.tile_sample_min_width = tile_min_width
 
-            vae_model.tile_sample_stride_num_frames = max(1, tile_min_frames * 3 // 4)
-            vae_model.tile_sample_stride_height = tile_min_height * 3 // 4
-            vae_model.tile_sample_stride_width = tile_min_width * 3 // 4
+            vae_model.tile_sample_stride_num_frames = max(1, tile_min_frames // 2)
+            vae_model.tile_sample_stride_height = tile_min_height // 2
+            vae_model.tile_sample_stride_width = tile_min_width // 2
 
         else:
             original_use_tiling = vae_model.use_tiling if has_tiling else None
@@ -604,6 +607,9 @@ class KandinskyVAEDecode(io.ComfyNode):
             vae_model.tile_sample_min_num_frames = original_tile_min_frames
             vae_model.tile_sample_min_height = original_tile_min_height
             vae_model.tile_sample_min_width = original_tile_min_width
+            vae_model.tile_sample_stride_num_frames = original_tile_stride_frames
+            vae_model.tile_sample_stride_height = original_tile_stride_height
+            vae_model.tile_sample_stride_width = original_tile_stride_width
         elif has_tiling and original_use_tiling is not None:
             vae_model.use_tiling = original_use_tiling
             vae_model.use_framewise_decoding = original_use_framewise

@@ -65,7 +65,7 @@ class KandinskyQwenLoader(io.ComfyNode):
                 io.Combo.Input("checkpoint", options=folder_paths.get_filename_list("text_encoders"), tooltip="Select the Qwen2.5-VL model."),
                 io.Combo.Input("precision", options=["bf16", "fp16", "fp32"], default="bf16", tooltip="Precision to load the model in."),
             ],
-            outputs=[io.Output("QWEN2_5_VL", type="CLIP")], # Output as CLIP type for compatibility
+            outputs=[io.Clip.Output("QWEN2_5_VL")], # Output as CLIP type for compatibility
         )
 
     @classmethod

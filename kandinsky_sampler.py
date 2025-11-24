@@ -328,7 +328,7 @@ def generate(
     timesteps = torch.linspace(1.0, 0.0, steps + 1, device=device, dtype=torch.float32)
     timesteps = scheduler_scale * timesteps / (1 + (scheduler_scale - 1) * timesteps)
 
-    for i in range(steps):
+    for i in trange(steps, desc="Kandinsky Sampling"):
         t_now = timesteps[i]
         t_next = timesteps[i+1]
         dt = t_next - t_now
